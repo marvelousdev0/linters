@@ -1,0 +1,117 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier", "simple-import-sort", "check-file"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "ignorePatterns": ["*.json", "node_modules/**/*", "dist/**/*", "build/**/*"],
+  "rules": {
+    "linebreak-style": ["error", "unix"],
+    "no-shadow": "off",
+    "no-console": "off",
+    "react/jsx-uses-react": ["off"],
+    "react/react-in-jsx-scope": ["off"],
+    "react/jsx-props-no-spreading": ["off"],
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/no-empty-function": ["off"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["if", "for"] },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
+      { "blankLine": "always", "prev": "*", "next": "return" }
+    ],
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "src/**/*": "KEBAB_CASE"
+      },
+      { "ignoreMiddleExtensions": true }
+    ],
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "src/**/": "KEBAB_CASE"
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+
+      { "selector": "enumMember", "format": ["UPPER_CASE"] },
+      { "selector": "enum", "format": ["PascalCase"] },
+      { "selector": "class", "format": ["PascalCase"] },
+      {
+        "filter": "_",
+        "selector": "variableLike",
+        "format": ["PascalCase", "camelCase", "UPPER_CASE"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "interface",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "typeAlias",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": ["function"],
+        "format": ["PascalCase", "camelCase"],
+        "leadingUnderscore": "allow"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.js", "**/*.ts", "**/*.tsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              [
+                "^react$",
+                "^[a-z]",
+                "^@",
+                "^~",
+                "^\\./(?=.*/)(?!/?$)",
+                "^\\.(?!/?$)",
+                "^\\./?$",
+                "^\\.\\.(?!/?$)",
+                "^\\.\\./?$"
+              ],
+              ["^.+\\.s?css$"],
+              ["^\\u0000"]
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
